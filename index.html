@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOMINUS VOBISCEM | Soluciones Integrales y Estilo Urbano</title>
+  <meta name="description" content="DOMINUS VOBISCEM: Lavado de autos, mantenimiento de computadoras y celulares, remodelación de hogar, diseño y publicidad, playeras y gorras, delivery y viajes. Todo en un solo lugar.">
+  <meta name="keywords" content="dominus vobiscem, lavado de autos, mantenimiento pc, reparacion celulares, remodelacion, diseño, playeras, gorras, delivery, viajes">
+  <meta property="og:title" content="DOMINUS VOBISCEM | Soluciones Integrales y Estilo Urbano">
+  <meta property="og:description" content="Todo lo que necesitas en un solo lugar. Servicios y productos con estilo urbano.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="logo.png">
+  <!-- Favicon SVG inline (V geométrica) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,90 10,20 30,20 50,60 70,20 90,20' fill='%2300bfff'/></svg>">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== VARIABLES DE MARCA ===== */
+    :root {
+      --negro: #0a0a0a;
+      --blanco: #ffffff;
+      --gris-oscuro: #1a1a1a;
+      --gris-medio: #333333;
+      --gris-claro: #aaaaaa;
+      --azul: #00bfff;
+      --rojo: #ff0033;
+      --fuente-titulo: 'Bebas Neue', sans-serif;
+      --fuente-cuerpo: 'Montserrat', sans-serif;
+    }
+
+    /* ===== RESET Y BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      background-color: var(--negro);
+      color: var(--blanco);
+      font-family: var(--fuente-cuerpo);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: none;
+    }
+
+    /* Cursor personalizado (solo desktop) */
+    .cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--azul);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease, background 0.2s ease;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+
+    .cursor.hover {
+      transform: translate(-50%, -50%) scale(2);
+      background: rgba(0, 191, 255, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .cursor { display: none; }
+      body { cursor: auto; }
+    }
+
+    /* ===== LOADER ===== */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--negro);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .loader.oculto {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader-logo {
+      width: 80px;
+      height: 80px;
+      animation: pulsoLoader 1s ease-in-out infinite;
+    }
+
+    @keyframes pulsoLoader {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.15); opacity: 0.6; }
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
+      background: transparent;
+    }
+
+    .navbar.scrolled {
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0.6rem 2rem;
+      border-bottom: 1px solid rgba(0, 191, 255, 0.15);
+    }
+
+    .nav-logo {
+      font-family: var(--fuente-titulo);
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      color: var(--blanco);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--azul); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gris-claro);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--azul);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--blanco); }
+    .nav-links a:hover::after { width: 100%; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .navbar { padding: 1rem; }
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    /* Canvas de partículas */
+    #particulas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* Fondo geométrico parallax */
+    .hero-bg {
+      position: absolute;
+      top: -10%;
+      left: -10%;
+      width: 120%;
+      height: 120%;
+      z-index: 1;
+      opacity: 0.08;
+      background-image:
+        linear-gradient(30deg, var(--azul) 1px, transparent 1px),
+        linear-gradient(150deg, var(--azul) 1px, transparent 1px),
+        linear-gradient(90deg, var(--azul) 1px, transparent 1px);
+      background-size: 80px 80px;
+      will-change: transform;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo-principal {
+      width: clamp(140px, 22vw, 240px);
+      height: auto;
+      filter: drop-shadow(0 0 30px rgba(0, 191, 255, 0.4));
+      animation: flotarLogo 4s ease-in-out infinite;
+    }
+
+    @keyframes flotarLogo {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hero h1 {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      letter-spacing: 6px;
+      line-height: 0.95;
+      color: var(--blanco);
+      text-shadow: 0 0 40px rgba(0, 191, 255, 0.2);
+    }
+
+    .hero .typewriter {
+      font-family: var(--fuente-cuerpo);
+      font-size: clamp(0.95rem, 2vw, 1.3rem);
+      font-weight: 300;
+      color: var(--gris-claro);
+      letter-spacing: 2px;
+      min-height: 1.8em;
+      border-right: 2px solid var(--azul);
+      padding-right: 4px;
+      animation: parpadeo 0.8s step-end infinite;
+    }
+
+    @keyframes parpadeo {
+      50% { border-color: transparent; }
+    }
+
+    /* Botón principal con pulso */
+    .btn-principal {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1rem;
+      padding: 1rem 2.4rem;
+      background: var(--azul);
+      color: var(--negro);
+      font-family: var(--fuente-cuerpo);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+      animation: pulsoBoton 2.2s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-principal:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(0, 191, 255, 0.6);
+    }
+
+    @keyframes pulsoBoton {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.5); }
+      50% { box-shadow: 0 0 0 16px rgba(0, 191, 255, 0); }
+    }
+
+    /* Indicador de scroll */
+    .scroll-indicador {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--azul);
+      font-size: 1.8rem;
+      animation: rebote 1.8s ease-in-out infinite;
+    }
+
+    @keyframes rebote {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(12px); }
+    }
+
+    /* ===== SECCIONES GENERALES ===== */
+    section {
+      padding: 5rem 2rem;
+      position: relative;
+    }
+
+    .seccion-titulo {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: 4px;
+      text-align: center;
+      color: var(--blanco);
+      margin-bottom: 0.5rem;
+    }
+
+    .seccion-subtitulo {
+      text-align: center;
+      color: var(--gris-claro);
+      font-weight: 300;
+      font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+      margin-bottom: 3.5rem;
+      letter-spacing: 1px;
+    }
+
+    /* ===== SERVICIOS ===== */
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 992px) {
+      .servicios-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .servicios-grid { grid-template-columns: 1fr; }
+    }
+
+    .tarjeta {
+      background: var(--gris-oscuro);
+      border: 1px solid var(--gris-medio);
+      border-radius: 8px;
+      padding: 2rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.9rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.4s ease,
+                  box-shadow 0.4s ease;
+      will-change: transform;
+    }
+
+    /* Línea superior decorativa */
+    .tarjeta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--azul), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .tarjeta:hover {
+      transform: translateY(-8px);
+      border-color: var(--azul);
+      box-shadow: 0 20px 50px rgba(0, 191, 255, 0.12);
+    }
+
+    .tarjeta:hover::before { opacity: 1; }
+
+    .tarjeta .icono {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gris-medio);
+      border-radius: 8px;
+      transition: border-color 0.4s ease, background 0.4s ease;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .tarjeta:hover .icono {
+      border-color: var(--azul);
+      background: rgba(0, 191, 255, 0.08);
+    }
+
+    .tarjeta .icono svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--blanco);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.4s ease;
+    }
+
+    .tarjeta:hover .icono svg { stroke: var(--azul); }
+
+    .tarjeta h3 {
+      font-family: var(--fuente-titulo);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: var(--blanco);
+      line-height: 1;
+    }
+
+    .tarjeta p {
+      color: var(--gris-claro);
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+
+    .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--rojo);
+      color: var(--blanco);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 0.3rem 0.7rem;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+
+    .btn-tarjeta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      background: transparent;
+      color: var(--blanco);
+      border: 1px solid var(--gris-medio);
+      border-radius: 4px;
+      font-family: var(--fuente-cuerpo);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-tarjeta:hover {
+      background: var(--azul);
+      border-color: var(--azul);
+      color: var(--negro);
+    }
+
+    /* Efecto Ripple */
+    .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(0);
+      animation: rippleEfecto 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes rippleEfecto {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ===== ESTADÍSTICAS ===== */
+    .stats {
+      background: var(--gris-oscuro);
+      border-top: 1px solid var(--gris-medio);
+      border-bottom: 1px solid var(--gris-medio);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    .stat-numero {
+      font-family: var(--fuente-titulo);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--azul);
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    .stat-label {
+      color: var(--gris-claro);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== REDES SOCIALES ===== */
+    .redes-grid {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .red-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+      height: 80px;
+      border: 1px solid var(--gris-medio);
+      border-radius: 12px;
+      background: var(--gris-oscuro);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+      text-decoration: none;
+    }
+
+    .red-social svg {
+      width: 34px;
+      height: 34px;
+      fill: var(--blanco);
+      transition: fill 0.35s ease;
+    }
+
+    .red-social:hover {
+      transform: scale(1.15) translateY(-4px);
+      border-color: var(--azul);
+      box-shadow: 0 12px 30px rgba(0, 191, 255, 0.25);
+    }
+
+    .red-social:hover svg { fill: var(--azul); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--negro);
+      border-top: 1px solid var(--azul);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--gris-claro);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      font-weight: 300;
+    }
+
+    footer .footer-marca {
+      color: var(--blanco);
+      font-weight: 600;
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Retrasos escalonados para tarjetas */
+    .tarjeta:nth-child(1) { transition-delay: 0.05s; }
+    .tarjeta:nth-child(2) { transition-delay: 0.1s; }
+    .tarjeta:nth-child(3) { transition-delay: 0.15s; }
+    .tarjeta:nth-child(4) { transition-delay: 0.2s; }
+    .tarjeta:nth-child(5) { transition-delay: 0.25s; }
+    .tarjeta:nth-child(6) { transition-delay: 0.3s; }
+    .tarjeta:nth-child(7) { transition-delay: 0.35s; }
+  </style>
+</head>
+<body>
+
+  <!-- CURSOR PERSONALIZADO -->
+  <div class="cursor" id="cursor"></div>
+
+  <!-- LOADER -->
+  <div class="loader" id="loader">
+    <svg class="loader-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="50,90 10,20 30,20 50,60 70,20 90,20" fill="none" stroke="#00bfff" stroke-width="4"/>
+      <line x1="50" y1="20" x2="50" y2="55" stroke="#ffffff" stroke-width="4"/>
+      <line x1="38" y1="32" x2="62" y2="32" stroke="#ffffff" stroke-width="4"/>
+    </svg>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-logo">DOMINUS <span>VOBISCEM</span></a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#redes">Redes</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="hero">
+    <canvas id="particulas"></canvas>
+    <div class="hero-bg" id="heroBg"></div>
+
+    <div class="hero-content">
+      <!-- REEMPLAZAR CON EL LOGO REAL: sube tu logo.png a la misma carpeta -->
+      <img src="logo.png" alt="Logo Dominus Vobiscem" class="logo-principal" id="logo-principal"
+           onerror="this.style.display='none'">
+
+      <h1>DOMINUS<br>VOBISCEM</h1>
+      <p class="typewriter" id="typewriter"></p>
+
+      <a href="https://wa.me/522293180481?text=Hola%20que%20tal,%20me%20gustaria%20mas%20informacion%20sobre%20sus%20servicios"
+         target="_blank" rel="noopener" class="btn-principal" aria-label="Contactar por WhatsApp">
+        <!-- Ícono WhatsApp -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Contáctanos por WhatsApp
+      </a>
+    </div>
+
+    <div class="scroll-indicador" aria-hidden="true">▼</div>
+  </header>
+
+  <!-- ===== SERVICIOS ===== -->
+  <section id="servicios">
+    <h2 class="seccion-titulo reveal">NUESTROS SERVICIOS</h2>
+    <p class="seccion-subtitulo reveal">Todo lo que necesitas en un solo lugar</p>
+
+    <div class="servicios-grid">
+
+      <!-- 1. LAVADO DE AUTOS -->
+      <article class="tarjeta reveal">
+        <div class="icono">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 17h14M5 17a2 2 0 01-2-2v-2l2-5h14l2 5v2a2 2 0 01-2 2M5 17a2 2 0 002 2h1a2 2 0 002-2M15 17a2 2 0 002 2h1a2 2 0 002-2M7 12h10"/>
+          </svg>
+        </div>
+        <h3>LAVADO DE AUTOS A DOMICILIO</h3>
+        <p>Lavamos tu coche por fuera en la comodidad de tu casa.</p>
+        <a href="https://wa.me/522293180481?text=Hola%20que%20tal%20estoy%20interesado%20en%20el%20servicio%20de%20lavado%20de%20autos%20a%20domicilio,%20me%20podrias%20dar%20informacion" target="_blank" rel="noopener" class="btn-tarjeta">Más información</a>
+      </article>
+
+      <!-- 2. MANTENIMIENTO PC -->
+      <article class="tarjeta reveal">
+        <div class="icono">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="13" rx="2"/>
+            <path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3>MANTENIMIENTO DE COMPUTADORAS</h3>
+        <p>Limpieza, cambio de pasta térmica, actualización, respaldos e instalación de software.</p>
+        <a href="https://wa.me/522293180481?text=Hola%20que%20tal%20estoy%20interesado%20en%20el%20servicio%20de%20mantenimiento%20de%20computadoras,%20me%20podrias%20dar%20informacion" target="_blank" rel="noopener" class="btn-tarjeta">Más información</a>
+      </article>
+
+      <!-- 3. REPARACIÓN CELULARES -->
+      <article class="tarjeta reveal">
+        <div class="icono">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="6" y="2" width="12" height="20" rx="2"/>
+            <line x1="11" y1="18" x2="13" y2="18"/>
+          </svg>
+        </div>
+        <h3>REPARACIÓN DE CELULARES</h3>
+        <p>Cambio de display, entrada de carga, reseteo y reparación general.</p>
+        <a href="https://wa.me/522293180481?text=Hola%20que%20tal%20estoy%20interesado%20en%20el%20servicio%20de%20reparacion%20de%20celulares,%20me%20podrias%20dar%20informacion" target="_blank" rel="noopener" class="btn-tarjeta">Más información</a>
+      </article>
+
+      <!-- 4. RECMAN -->
+      <article class="tarjeta reveal">
+        <div class="icono">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 10l9-7 9 7v10a2 2 0 01-2 2H5a2 2 0 01-2-2V10z"/>
+            <path d="M14 14l-2 2-4-4"/>
+          </svg>
+        </div>
+        <h3>RECMAN - REMODELACIÓN DE HOGAR</h3>
+        <p>Pintura, impermeabilización, tablaroca, muros, plafones, soldadura y estructuras metálicas.</p>
+        <a href="https://wa.me/522293180481?text=Hola%20que%20tal%20estoy%20interesado%20en%20el%20servicio%20de%20remodelacion%20y%20reparacion%20de%20hogar,%20me%20podrias%20dar%20informacion" target="_blank" rel="noopener" class="btn-tarjeta">Más información</a>
+      </article>
+
+      <!-- 5. DISEÑO Y PUBLICIDAD -->
+      <article class="tarjeta reveal">
+        <div class="icono">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+            <path d="M2 2l7.586 7.586"/>
+            <circle cx="11" cy="11" r="2"/>
+          </svg>
+        </div>
+        <h3>DISEÑO Y PUBLICIDAD</h3>
+        <p>Creamos tus logos, tarjetas de presentación, trípticos, folletos, páginas de Facebook y te publicitamos.</p>
+        <a href="https://wa.me/522293180481?text=Hola%20que%20tal%20estoy%20interesado%20en%20el%20servicio%20de%20diseño%20y%20publicidad,%20me%20podrias%20dar%20informacion" target="_blank" rel="noopener" class="btn-tarjeta">Más información</a>
+      </article>
+
+      <!-- 6. PLAYERAS Y GORRAS -->
+      <article class="tarjeta reveal">
+        <span class="badge">NUEVA COLECCIÓN</span>
+        <div class="icono">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7l4-4h8l4 4-3 3v10a1 1 0 01-1 1H8a1 1 0 01-1-1V10L4 7z"/>
+            <path d="M9 3v4h6V3"/>
+          </svg>
+        </div>
+        <h3>PLAYERAS Y GORRAS</h3>
+        <p>Viste con actitud. Conoce nuestra colección de ropa urbana.</p>
+        <a href="https://wa.me/522293180481?text=Hola%20que%20tal%20estoy%20interesado%20en%20adquirir%20playeras%20y%20gorras,%20me%20podrias%20dar%20informacion" target="_blank" rel="noopener" class="btn-tarjeta">Más información</a>
+      </article>
+
+      <!-- 7. DELIVERY Y VIAJES -->
+      <article class="tarjeta reveal">
+        <div class="icono">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="5.5" cy="17.5" r="2.5"/>
+            <circle cx="18.5" cy="17.5" r="2.5"/>
+            <path d="M5.5 17.5L8 10h6l2 7.5"/>
+            <path d="M14 10l-2-4h-2"/>
+          </svg>
+        </div>
+        <h3>DELIVERY Y VIAJES</h3>
+        <p>Entregas rápidas, seguras y a toda la ciudad. Tu tiempo es oro, nosotros lo cuidamos.</p>
+        <a href="https://wa.me/522293180481?text=Hola%20que%20tal%20estoy%20interesado%20en%20el%20servicio%20de%20delivery%20y%20viajes,%20me%20podrias%20dar%20informacion" target="_blank" rel="noopener" class="btn-tarjeta">Más información</a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== ESTADÍSTICAS ===== -->
+  <section class="stats" id="stats">
+    <div class="stats-grid">
+      <div class="reveal">
+        <div class="stat-numero" data-meta="500">0</div>
+        <div class="stat-label">Clientes Satisfechos</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-numero" data-meta="7">0</div>
+        <div class="stat-label">Servicios Disponibles</div>
+      </div>
+      <div class="reveal">
+        <div class="stat-numero" data-meta="24">0</div>
+        <div class="stat-label">Horas de Atención</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REDES SOCIALES ===== -->
+  <section id="redes">
+    <h2 class="seccion-titulo reveal">SÍGUENOS</h2>
+    <p class="seccion-subtitulo reveal">Mantente al día con nuestras novedades y promociones</p>
+
+    <div class="redes-grid">
+      <!-- YouTube -->
+      <a href="https://youtube.com/@dominusvobiscum-z5b?si=Q3Y6Aeoa9sPFXhV2" target="_blank" rel="noopener" class="red-social reveal" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/dominusvobiscum369/#" target="_blank" rel="noopener" class="red-social reveal" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/dominusvobiscem/" target="_blank" rel="noopener" class="red-social reveal" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contacto">
+    <p>© 2026 <span class="footer-marca">DOMINUS VOBISCEM</span>. Todos los derechos reservados.</p>
+    <p style="margin-top:0.5rem;">Soluciones Integrales y Estilo Urbano.</p>
+  </footer>
+
+  <script>
+    /* ============================================================
+       JAVASCRIPT - DOMINUS VOBISCEM
+       Todas las interacciones y animaciones de la página
+       ============================================================ */
+
+    // ===== 1. LOADER =====
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        loader.classList.add('oculto');
+      }, 800);
+    });
+
+    // ===== 2. CURSOR PERSONALIZADO =====
+    const cursor = document.getElementById('cursor');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+      // Efecto hover en elementos interactivos
+      document.querySelectorAll('a, button, .tarjeta').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+      });
+    } else {
+      cursor.style.display = 'none';
+    }
+
+    // ===== 3. NAVBAR DINÁMICA =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // ===== 4. EFECTO TYPEWRITER =====
+    const textoTypewriter = 'Soluciones Integrales y Estilo Urbano';
+    const elementoTypewriter = document.getElementById('typewriter');
+    let indiceType = 0;
+
+    function escribirTypewriter() {
+      if (indiceType < textoTypewriter.length) {
+        elementoTypewriter.textContent += textoTypewriter.charAt(indiceType);
+        indiceType++;
+        setTimeout(escribirTypewriter, 55);
+      }
+    }
+    // Iniciar después del loader
+    setTimeout(escribirTypewriter, 1200);
+
+    // ===== 5. SCROLL REVEAL (Intersection Observer) =====
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add('visible');
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
+
+    // ===== 6. EFECTO PARALLAX SUTIL EN HERO =====
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+      const scroll = window.scrollY;
+      if (scroll < window.innerHeight) {
+        heroBg.style.transform = `translateY(${scroll * 0.3}px)`;
+      }
+    }, { passive: true });
+
+    // ===== 7. PARTÍCULAS GEOMÉTRICAS EN CANVAS =====
+    const canvas = document.getElementById('particulas');
+    const ctx = canvas.getContext('2d');
+    let particulasArray = [];
+    let anchoCanvas, altoCanvas;
+
+    function ajustarCanvas() {
+      anchoCanvas = canvas.width = canvas.offsetWidth;
+      altoCanvas = canvas.height = canvas.offsetHeight;
+    }
+
+    class Particula {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * anchoCanvas;
+        this.y = Math.random() * altoCanvas;
+        this.tamano = Math.random() * 2 + 0.5;
+        this.velocidadX = (Math.random() - 0.5) * 0.3;
+        this.velocidadY = (Math.random() - 0.5) * 0.3;
+        this.opacidad = Math.random() * 0.4 + 0.1;
+      }
+      actualizar() {
+        this.x += this.velocidadX;
+        this.y += this.velocidadY;
+        if (this.x < 0 || this.x > anchoCanvas) this.velocidadX *= -1;
+        if (this.y < 0 || this.y > altoCanvas) this.velocidadY *= -1;
+      }
+      dibujar() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.tamano, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 191, 255, ${this.opacidad})`;
+        ctx.fill();
+      }
+    }
+
+    function iniciarParticulas() {
+      ajustarCanvas();
+      const cantidad = window.innerWidth < 768 ? 30 : 60;
+      particulasArray = [];
+      for (let i = 0; i < cantidad; i++) {
+        particulasArray.push(new Particula());
+      }
+      animarParticulas();
+    }
+
+    function animarParticulas() {
+      ctx.clearRect(0, 0, anchoCanvas, altoCanvas);
+      particulasArray.forEach(p => {
+        p.actualizar();
+        p.dibujar();
+      });
+      // Dibujar líneas de conexión sutiles
+      for (let i = 0; i < particulasArray.length; i++) {
+        for (let j = i + 1; j < particulasArray.length; j++) {
+          const dx = particulasArray[i].x - particulasArray[j].x;
+          const dy = particulasArray[i].y - particulasArray[j].y;
+          const distancia = Math.sqrt(dx * dx + dy * dy);
+          if (distancia < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particulasArray[i].x, particulasArray[i].y);
+            ctx.lineTo(particulasArray[j].x, particulasArray[j].y);
+            ctx.strokeStyle = `rgba(0, 191, 255, ${0.08 * (1 - distancia / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animarParticulas);
+    }
+
+    iniciarParticulas();
+    window.addEventListener('resize', () => {
+      ajustarCanvas();
+      iniciarParticulas();
+    });
+
+    // ===== 8. EFECTO RIPPLE EN BOTONES =====
+    document.querySelectorAll('.btn-principal, .btn-tarjeta').forEach(boton => {
+      boton.addEventListener('click', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+        ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+        this.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // ===== 9. CONTADOR ANIMADO (Estadísticas) =====
+    const contadores = document.querySelectorAll('.stat-numero');
+    const observadorContador = new IntersectionObserver((entradas) => {
+      entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+          const elemento = entrada.target;
+          const meta = parseInt(elemento.getAttribute('data-meta'));
+          let actual = 0;
+          const incremento = Math.ceil(meta / 60);
+          const actualizarContador = () => {
+            actual += incremento;
+            if (actual >= meta) {
+              elemento.textContent = '+' + meta;
+            } else {
+              elemento.textContent = '+' + actual;
+              requestAnimationFrame(actualizarContador);
+            }
+          };
+          actualizarContador();
+          observadorContador.unobserve(elemento);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    contadores.forEach(c => observadorContador.observe(c));
+
+    // ===== 10. SCROLL SUAVE PARA ENLACES DE ANCLA =====
+    document.querySelectorAll('a[href^="#"]').forEach(enlace => {
+      enlace.addEventListener('click', function(e) {
+        const destino = document.querySelector(this.getAttribute('href'));
+        if (destino) {
+          e.preventDefault();
+          destino.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>
